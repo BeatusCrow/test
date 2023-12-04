@@ -9,6 +9,7 @@
       <root url="jar://$PROJECT_DIR$/javafx-sdk-17.0.9/lib/javafx.media.jar!/" />
       <root url="jar://$PROJECT_DIR$/javafx-sdk-17.0.9/lib/javafx.swing.jar!/" />
       <root url="jar://$PROJECT_DIR$/javafx-sdk-17.0.9/lib/javafx.web.jar!/" />
+      <root url="jar://$PROJECT_DIR$/gson-2.10.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
