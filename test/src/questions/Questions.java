@@ -1,5 +1,8 @@
 package questions;
 
+/*
+ This is a class that creates an object in which our json will be stored. Well, or to deserialize a json object
+ */
 public class Questions {
     private String question;
     private String answer_1;
@@ -18,6 +21,9 @@ public class Questions {
     public String getAnswer_4() { return answer_4; }
 
 
+    /*
+     In fact, it is not used anywhere, but if you suddenly need this thing during the debag process... Then she's ready)
+     */
     @Override
     public String toString(){
         return question + answer_1 + answer_2 + answer_3 + answer_4;

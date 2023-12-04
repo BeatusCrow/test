@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Parent;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -17,6 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+/*
+ The class responsible for changing windows during authorization, changing questions when using different buttons.
+ */
 public class ControllerSwitch {
 
     @FXML
@@ -31,40 +33,42 @@ public class ControllerSwitch {
     private Stage stage;
     private static Scene scene;
     private Parent root;
-
     private static int number_questions = 0;
+    private static Text text_quest;
 
-    public static Text text_quest;
-
+    /*
+     This method checks whether the authorization fields are full and loads the test window accordingly.
+     */
     @FXML
     public void onClickEntry(ActionEvent event) throws IOException {
         String name = this.name.getText();
         String soname = this.soname.getText();
         String job = this.job.getText();
 
+        // We check the authorization fields for fullness
         if (!Objects.equals(name, "") && !Objects.equals(soname, "") && !Objects.equals(job, "")) {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/windows/TestWindow.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            text_quest = (Text) scene.lookup("#text_question");
             stage.setScene(scene);
             stage.show();
-            System.out.println(name + soname + job);
-            number_questions++;
-            System.out.println(number_questions);
-            SwitchTextQuestion();
-            SwitchTextAnswer1();
-            SwitchTextAnswer2();
-            SwitchTextAnswer3();
-            SwitchTextAnswer4();
+
+            text_quest = (Text) scene.lookup("#text_question"); // We find an element on the scene that is responsible for the text of the question
+
+            number_questions++;   // Increasing the number_questions value in order to load the questions on the first page.
+            SwitchTextQuestion(); //
+            SwitchTextAnswer1();  //
+            SwitchTextAnswer2();  // Calling methods to update texts (question, answers to a question)
+            SwitchTextAnswer3();  //
+            SwitchTextAnswer4();  //
         }
         else {
-            System.out.println("Ошибка");
+            System.out.println("Ошибка"); // Later I will replace it with the appearance of a window with an error and its detailed description
         }
     }
 
     @FXML
-    public void onClickNext(ActionEvent event) throws IOException {
+    public void onClickNext(ActionEvent event) throws IOException { // The method for the button responsible for going to the next question (not the "answer" button)
         number_questions = number_questions + 1;
         SwitchTextQuestion();
         SwitchTextAnswer1();
@@ -74,7 +78,7 @@ public class ControllerSwitch {
     }
 
     @FXML
-    public void onClickPast(ActionEvent event) throws IOException {
+    public void onClickPast(ActionEvent event) throws IOException { // The method for the button responsible for going to the next question
         number_questions--;
         SwitchTextQuestion();
         SwitchTextAnswer1();
@@ -83,6 +87,9 @@ public class ControllerSwitch {
         SwitchTextAnswer4();
     }
 
+    /*
+     Next, there will be a group of methods responsible for changing the text of the question, answers to the question
+     */
     public void SwitchTextQuestion() throws FileNotFoundException {
         String text = ControllerQuestions.TextQuestions(number_questions);
         text_quest.setText(text);
