@@ -1,31 +1,71 @@
 package questions;
 
+
+
 /*
  This is a class that creates an object in which our json will be stored. Well, or to deserialize a json object
  */
 public class Questions {
-    private String question;
-    private String answer_1;
-    private String answer_2;
-    private String answer_3;
-    private String answer_4;
+    private Quest questions_1;
+    private Quest questions_2;
+    private Quest questions_3;
 
-    public String getQuestion() { return question; }
+    public String getQuestions(int number){
+        return switch (number) {
+            case (1) -> questions_1.question;
+            case (2) -> questions_2.question;
+            case (3) -> questions_3.question;
+            default -> "Error";
+        };
+    }
 
-    public String getAnswer_1() { return answer_1; }
+    public String getAnswer1(int number){
+        return switch (number) {
+            case (1) -> questions_1.answer1;
+            case (2) -> questions_2.answer1;
+            case (3) -> questions_3.answer1;
+            default -> "Error";
+        };
+    }
 
-    public String getAnswer_2() { return answer_2; }
+    public String getAnswer2(int number){
+        return switch (number) {
+            case (1) -> questions_1.answer2;
+            case (2) -> questions_2.answer2;
+            case (3) -> questions_3.answer2;
+            default -> "Error";
+        };
+    }
 
-    public String getAnswer_3() { return answer_3; }
+    public String getAnswer3(int number){
+        return switch (number) {
+            case (1) -> questions_1.answer3;
+            case (2) -> questions_2.answer3;
+            case (3) -> questions_3.answer3;
+            default -> "Error";
+        };
+    }
 
-    public String getAnswer_4() { return answer_4; }
+    public String getAnswer4(int number){
+        return switch (number) {
+            case (1) -> questions_1.answer4;
+            case (2) -> questions_2.answer4;
+            case (3) -> questions_3.answer4;
+            default -> "Error";
+        };
+    }
 
-
-    /*
-     In fact, it is not used anywhere, but if you suddenly need this thing during the debag process... Then she's ready)
-     */
     @Override
     public String toString(){
-        return question + answer_1 + answer_2 + answer_3 + answer_4;
+        return questions_1.question + questions_1.answer1 + questions_1.answer2 + questions_1.answer3 + questions_1.answer4 +  questions_2.question + questions_2.answer1 + questions_2.answer2 + questions_2.answer3 + questions_2.answer4;
     }
 }
+
+class Quest {
+    public String question;
+    public String answer1;
+    public String answer2;
+    public String answer3;
+    public String answer4;
+}
+
