@@ -34,7 +34,7 @@
                      </image>
                   </ImageView>
                   <Text layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" ―――――――――――" textAlignment="CENTER" wrappingWidth="148.5078125" />
-                  <Button layoutX="6.0" layoutY="362.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #f65b56;" text="Закрыть приложение" />
+                  <Button layoutX="6.0" layoutY="362.0" onAction="#onClickExit" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #f65b56;" text="Закрыть приложение" />
                   <Text layoutX="60.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тесты" />
                </children>
                <effect>

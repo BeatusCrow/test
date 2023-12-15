@@ -2,10 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,23 +60,35 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Button layoutX="318.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickAnswer" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #f65b56;" text="Ответить" />
-      <RadioButton fx:id="radio_button_1" layoutX="169.0" layoutY="173.0" mnemonicParsing="false" onAction="#RadioButtonCheck" text="ответ 1">
-         <toggleGroup>
-            <ToggleGroup fx:id="Answer" />
-         </toggleGroup>
-      </RadioButton>
-      <Button layoutX="265.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickPast" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f65b56;" text="&lt;" />
-      <Button layoutX="414.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickNext" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: #f65b56;" text="&gt;" />
-      <RadioButton fx:id="radio_button_2" layoutX="169.0" layoutY="209.0" mnemonicParsing="false" onAction="#RadioButtonCheck" text="ответ 2" toggleGroup="$Answer" />
-      <RadioButton fx:id="radio_button_3" layoutX="169.0" layoutY="247.0" mnemonicParsing="false" onAction="#RadioButtonCheck" text="ответ 3" toggleGroup="$Answer" />
-      <RadioButton fx:id="radio_button_4" layoutX="169.0" layoutY="279.0" mnemonicParsing="false" onAction="#RadioButtonCheck" text="ответ 4" toggleGroup="$Answer" />
-      <Text fill="#949292" layoutX="245.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите один из нижеперечисленных ответов" />
-      <Text id="text_question" layoutX="162.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос" wrappingWidth="431.125">
+      <Text id="text_question" layoutX="196.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество правильных ответов:" wrappingWidth="235.125">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <ProgressIndicator fx:id="progressbar" layoutX="559.0" layoutY="342.0" progress="0.0" />
+      <Text id="text_question" layoutX="184.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Время прохождения теста (в мин.): " wrappingWidth="246.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="442.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="439.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="24.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="186.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Результат тестирования:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="369.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зачет">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
