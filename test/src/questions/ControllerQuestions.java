@@ -18,18 +18,22 @@ public class ControllerQuestions {
         questions_list[number_question] = answer;
     }
 
-    public static boolean checkAnswer(){
-        int flag = 0;
+    public static int getTrue_answer(){
+        return true_answer;
+    }
+
+    public static boolean checkLastAnswer(){
+        int count = 0;
         for(int i = 1; i < questions_list.length; i++){
             if(questions_list[i] == 0)
-                flag = 1;
+                count++;
         }
-        switch (flag){
+        switch (count){
             case (1) -> {
-                return false;
+                return true;
             }
             default -> {
-                return true;
+                return false;
             }
         }
     }

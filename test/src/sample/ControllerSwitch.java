@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -58,6 +55,9 @@ public class ControllerSwitch {
 
     public static double progress;
 
+
+    private static int first_time;
+
     public static boolean state_past_button = false;
     public static boolean state_next_button = true;
 
@@ -76,6 +76,7 @@ public class ControllerSwitch {
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
+            first_time = (int) System.currentTimeMillis();
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -155,30 +156,85 @@ public class ControllerSwitch {
 
     @FXML
     public void onClickAnswer(ActionEvent actionEvent) throws IOException {
-        System.out.println(ControllerQuestions.checkAnswer());
-        if(number_questions==10){
-            if(!ControllerQuestions.checkAnswer()){
+        if(!ControllerQuestions.checkLastAnswer()){
+            if(number_questions == 10){
+                if(radio_button_1.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 1);
+                } else if(radio_button_2.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 2);
+                } else if(radio_button_3.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 3);
+                } else if(radio_button_4.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 4);
+                }
                 number_questions = ControllerQuestions.getNumberAnswer();
+                OnClickSwitch();
+                SwitchStateRB(number_questions);
+                ChangeStatePastButton();
+                ChangeStateNextButton();
             }
+            else{
+                if(radio_button_1.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 1);
+                    OnClickSwitch();
+                } else if(radio_button_2.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 2);
+                    OnClickSwitch();
+                } else if(radio_button_3.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 3);
+                    OnClickSwitch();
+                } else if(radio_button_4.isSelected()){
+                    ControllerQuestions.setQuestionList(number_questions, 4);
+                    OnClickSwitch();
+                } else {
+                    System.out.println("Введите что-нибудь");
+                }
+                SwitchStateRB(number_questions);
+                ChangeStatePastButton();
+                ChangeStateNextButton();
+            }
+        }else{
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/windows/ResultsWindow.fxml")));
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            SwitchStatistic();
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                }
+            });
+            stage.show();
         }
+    }
 
-        if(radio_button_1.isSelected()){
-            ControllerQuestions.setQuestionList(number_questions, 1);
-            OnClickSwitch();
-        } else if(radio_button_2.isSelected()){
-            ControllerQuestions.setQuestionList(number_questions, 2);
-            OnClickSwitch();
-        } else if(radio_button_3.isSelected()){
-            ControllerQuestions.setQuestionList(number_questions, 3);
-            OnClickSwitch();
-        } else if(radio_button_4.isSelected()){
-            ControllerQuestions.setQuestionList(number_questions, 4);
-            OnClickSwitch();
-        } else {
-            System.out.println("Введите что-нибудь");
+    public void SwitchStatistic(){
+        System.out.println(System.currentTimeMillis());
+        String answers = Integer.toString(ControllerQuestions.getTrue_answer());
+        Text text_number_true_answer = (Text) scene.lookup("#text_number_true_answer");
+        text_number_true_answer.setText(answers);
+
+        int second_time = (int) System.currentTimeMillis();
+        int time = (second_time - first_time)/60000;
+        Text text_number_minutes = (Text) scene.lookup("#text_number_minutes");
+        text_number_minutes.setText(String.valueOf(time));
+
+        Text text_results = (Text) scene.lookup("#text_results");
+        if(ControllerQuestions.getTrue_answer() > 7 && time < 15){
+            text_results.setText("Зачет");
         }
-        ChangeStatePastButton();
-        ChangeStateNextButton();
+        else{
+            text_results.setText("Незачет");
+        }
     }
 
     public void OnClickSwitch() throws FileNotFoundException {
