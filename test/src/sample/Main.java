@@ -9,6 +9,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /*
  This class is intended only for loading the start window.
  Nothing else is happening here.
@@ -44,5 +48,9 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args){launch(args);}
+    public static void main(String[] args) throws IOException {
+        launch(args);
+        final URL url = new URL("http://jsonplaceholder.typicode.com/posts?_limit=10");
+        final HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    }
 }

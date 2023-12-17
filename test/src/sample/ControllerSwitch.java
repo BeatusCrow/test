@@ -1,5 +1,6 @@
 package sample;
 
+import db.DataBaseHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,15 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import questions.ControllerQuestions;
-import questions.Questions;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 /*
@@ -61,17 +64,29 @@ public class ControllerSwitch {
     public static boolean state_past_button = false;
     public static boolean state_next_button = true;
 
+
+    private static String db_name;
+    private static String db_soname;
+    private static String db_job;
+    private static String db_results;
+    private static int db_time;
+    private static int db_answer;
+
     /*
      This method checks whether the authorization fields are full and loads the test window accordingly.
      */
     @FXML
     public void onClickEntry(ActionEvent event) throws IOException {
-        String name = this.name.getText();
-        String soname = this.soname.getText();
-        String job = this.job.getText();
+        String name = this.name.getText().trim();
+        String soname = this.soname.getText().trim();
+        String job = this.job.getText().trim();
 
         // We check the authorization fields for fullness
         if (!Objects.equals(name, "") && !Objects.equals(soname, "") && !Objects.equals(job, "")) {
+            db_name = name;
+            db_soname = soname;
+            db_job = job;
+
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/windows/TestWindow.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -106,7 +121,6 @@ public class ControllerSwitch {
             System.out.println("Ошибка"); // Later I will replace it with the appearance of a window with an error and its detailed description
         }
     }
-
 
     @FXML
     public void onClickNext(ActionEvent event) throws IOException { // The method for the button responsible for going to the next question (not the "answer" button)
@@ -155,7 +169,7 @@ public class ControllerSwitch {
     }
 
     @FXML
-    public void onClickAnswer(ActionEvent actionEvent) throws IOException {
+    public void onClickAnswer(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         if(!ControllerQuestions.checkLastAnswer()){
             if(number_questions == 10){
                 if(radio_button_1.isSelected()){
@@ -217,24 +231,34 @@ public class ControllerSwitch {
         }
     }
 
-    public void SwitchStatistic(){
+    public void SwitchStatistic() throws SQLException, ClassNotFoundException {
         System.out.println(System.currentTimeMillis());
         String answers = Integer.toString(ControllerQuestions.getTrue_answer());
         Text text_number_true_answer = (Text) scene.lookup("#text_number_true_answer");
         text_number_true_answer.setText(answers);
+        db_answer = ControllerQuestions.getTrue_answer();
 
         int second_time = (int) System.currentTimeMillis();
         int time = (second_time - first_time)/60000;
         Text text_number_minutes = (Text) scene.lookup("#text_number_minutes");
         text_number_minutes.setText(String.valueOf(time));
+        db_time = time;
 
         Text text_results = (Text) scene.lookup("#text_results");
         if(ControllerQuestions.getTrue_answer() > 7 && time < 15){
             text_results.setText("Зачет");
+            db_results = "Зачет";
         }
         else{
             text_results.setText("Незачет");
+            db_results = "Незачет";
         }
+
+        dataUser();
+    }
+
+    private void dataUser() throws SQLException, ClassNotFoundException {
+        DataBaseHandler.signUp(db_name, db_soname, db_job, db_results, db_time, db_answer);
     }
 
     public void OnClickSwitch() throws FileNotFoundException {
