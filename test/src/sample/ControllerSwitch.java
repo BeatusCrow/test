@@ -12,6 +12,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import questions.ControllerQuestions;
@@ -71,6 +72,7 @@ public class ControllerSwitch {
     private static String db_results;
     private static int db_time;
     private static int db_answer;
+
 
     /*
      This method checks whether the authorization fields are full and loads the test window accordingly.
