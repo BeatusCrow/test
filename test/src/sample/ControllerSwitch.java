@@ -13,6 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import questions.ControllerQuestions;
@@ -91,7 +92,7 @@ public class ControllerSwitch {
 
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/windows/TestWindow.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = new Scene(root, Color.TRANSPARENT);
             stage.setScene(scene);
             first_time = (int) System.currentTimeMillis();
             root.setOnMousePressed(new EventHandler<MouseEvent>() {

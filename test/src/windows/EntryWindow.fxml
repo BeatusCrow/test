@@ -1,75 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<?import javafx.scene.control.Tooltip?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f2f6fc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerSwitch">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-radius: 10; -fx-background-color: #123;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerSwitch">
    <children>
-      <Pane layoutX="-7.0" layoutY="-7.0" prefHeight="91.0" prefWidth="608.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Pane layoutX="6.0" layoutY="2.0" prefHeight="406.0" prefWidth="149.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <ImageView layoutX="12.0">
-                     <image>
-                        <Image url="@../resources/lic.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="5.0" layoutY="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #000000;" text="Пожарный минимум">
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </Button>
-                  <ImageView layoutX="4.0" layoutY="123.0">
-                     <image>
-                        <Image url="@../resources/line1.png" />
-                     </image>
-                  </ImageView>
-                  <Text layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" ―――――――――――" textAlignment="CENTER" wrappingWidth="148.5078125" />
-                  <Button layoutX="6.0" layoutY="362.0" onAction="#onClickExit" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #f65b56;" text="Закрыть приложение" />
-                  <Text layoutX="60.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тесты" />
-               </children>
-               <effect>
-                  <DropShadow height="23.45" radius="6.9475" width="6.34">
-                     <color>
-                        <Color opacity="0.8167939186096191" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Pane>
-            <ImageView layoutX="166.0" layoutY="28.0">
-               <image>
-                  <Image url="@../resources/fortest.png" />
-               </image>
-            </ImageView>
-            <ImageView layoutX="548.0" layoutY="27.0">
-               <image>
-                  <Image url="@../resources/search.png" />
-               </image>
-            </ImageView>
-            <TextField layoutX="391.0" layoutY="40.0" prefHeight="25.0" prefWidth="157.0" promptText="Поиск теста в программе" style="-fx-background-color: #ffffff;" />
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Pane>
-      <Button layoutX="318.0" layoutY="302.0" mnemonicParsing="false" onAction="#onClickEntry" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #f65b56;" text="Войти" />
-      <Text layoutX="297.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="АВТОРИЗАЦИЯ">
+      <Button layoutX="241.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClickEntry" prefHeight="40.0" prefWidth="129.0" style="-fx-background-color: #BC060B; -fx-background-radius: 10;" text="начать" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Pane layoutY="31.0" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #BC060B;">
+         <children>
+            <Text fill="WHITE" layoutX="219.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация">
+               <font>
+                  <Font name="Calibri Bold Italic" size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TextField fx:id="name" alignment="CENTER" layoutX="231.0" layoutY="188.0" promptText="Имя" />
+      <TextField fx:id="soname" alignment="CENTER" layoutX="230.0" layoutY="146.0" promptText="Фамилия" />
+      <TextField fx:id="job" alignment="CENTER" layoutX="230.0" layoutY="231.0" promptText="Должность" />
+      <Text fill="#bfbfbf" layoutX="149.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Заполните все поля перед началом тестирования">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="name" layoutX="282.0" layoutY="175.0" promptText="Имя" />
-      <TextField fx:id="soname" layoutX="283.0" layoutY="213.0" promptText="Фамилия" />
-      <TextField fx:id="job" layoutX="282.0" layoutY="251.0" promptText="Должность" />
+      <Button layoutX="563.0" mnemonicParsing="false" onAction="#onClickExit" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: #123; -fx-background-radius: 10;" text="✘" textFill="WHITE" />
    </children>
 </Pane>

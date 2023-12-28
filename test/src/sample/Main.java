@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,7 +28,7 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource("/windows/EntryWindow.fxml")); // loading the start window.
         Parent root = loader.load();
         stage.setTitle("Test");
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 600, 400, Color.TRANSPARENT));
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.setAlwaysOnTop(false);
