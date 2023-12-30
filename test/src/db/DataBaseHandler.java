@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ This class is responsible for connecting to the database and sending the "INSERT INTO" request.
+ */
+
 public class DataBaseHandler extends Configs {
     static Connection dbConnection;
 
@@ -18,6 +22,11 @@ public class DataBaseHandler extends Configs {
         return dbConnection;
     }
 
+    /*
+    This method is called when you click the "save answer" button after selecting the answer to the last unanswered question.
+    Fields with information about the test participant and its results are passed to it.
+    Then, using constants, the received information is sent to the database
+    */
     public static void signUp(String name, String soname, String job, String results, int time, int answer) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" +
                 Const.USER_NAME + "," + Const.USER_SONAME + "," +

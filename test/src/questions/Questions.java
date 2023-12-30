@@ -1,10 +1,20 @@
 package questions;
 
-
-
-/*
- This is a class that creates an object in which our json will be stored. Well, or to deserialize a json object
+/**
+ These classes are needed to get questions and answers from a json file
  */
+
+// This class is needed to create objects with the same data as in a json file
+class Quest {
+    public String question;
+    public String answer1;
+    public String answer2;
+    public String answer3;
+    public String answer4;
+    public int true_answer;
+}
+
+// This class contains methods for obtaining information about the current question/answer
 public class Questions {
     private Quest questions_1;
     private Quest questions_2;
@@ -18,6 +28,7 @@ public class Questions {
     private Quest questions_10;
 
 
+    // This method is needed to update the text of the question
     public String getQuestions(int number){
         return switch (number) {
             case (1) -> questions_1.question;
@@ -34,6 +45,7 @@ public class Questions {
         };
     }
 
+    // This method is needed to update the text of the 1st answer option
     public String getAnswer1(int number){
         return switch (number) {
             case (1) -> questions_1.answer1;
@@ -50,6 +62,7 @@ public class Questions {
         };
     }
 
+    // This method is needed to update the text of the 2nd answer option
     public String getAnswer2(int number){
         return switch (number) {
             case (1) -> questions_1.answer2;
@@ -66,6 +79,7 @@ public class Questions {
         };
     }
 
+    // This method is needed to update the text of the 3rd answer option
     public String getAnswer3(int number){
         return switch (number) {
             case (1) -> questions_1.answer3;
@@ -82,6 +96,7 @@ public class Questions {
         };
     }
 
+    // This method is needed to update the text of the 4th answer option
     public String getAnswer4(int number){
         return switch (number) {
             case (1) -> questions_1.answer4;
@@ -98,6 +113,7 @@ public class Questions {
         };
     }
 
+    // This method is needed to get the number of the correct answer
     public int getTrueAnswer(int number){
         return switch (number) {
             case (1) -> questions_1.true_answer;
@@ -114,18 +130,9 @@ public class Questions {
         };
     }
 
+    // This method simply exists
     @Override
     public String toString(){
         return questions_1.question + questions_1.answer1 + questions_1.answer2 + questions_1.answer3 + questions_1.answer4 +  questions_2.question + questions_2.answer1 + questions_2.answer2 + questions_2.answer3 + questions_2.answer4;
     }
 }
-
-class Quest {
-    public String question;
-    public String answer1;
-    public String answer2;
-    public String answer3;
-    public String answer4;
-    public int true_answer;
-}
-

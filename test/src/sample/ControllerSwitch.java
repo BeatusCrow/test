@@ -12,22 +12,30 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import questions.ControllerQuestions;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-/*
- The class responsible for changing windows during authorization, changing questions when using different buttons.
+/**
+ This is the most voluminous class in the program, responsible for many things:
+ changing authorization windows, testing, results, changing the text of the question/ answers when switching between questions,
+ pressing various buttons (save the answer, close the program, "✘")
  */
+
+
 public class ControllerSwitch {
 
+    // region @FXML
+
+    /*
+    I use fx:id, but it's better not to do that because of problems with the null value.
+    It is better to use the lookup method for the scene, which finds the object by a simple id, rather than fx:.
+     */
     @FXML
     public TextField name;
 
@@ -49,23 +57,33 @@ public class ControllerSwitch {
     @FXML
     public TextField job;
 
+    // endregion
+
+
+    // region Loading a new window
+
+    /*
+    These fields are needed to load a new window.
+    After authorization, we load the test window, and after the test window, we load the results window
+     */
     private Stage stage;
     private static Scene scene;
     private Parent root;
     private static int number_questions = 0;
     private static Text text_quest;
 
-    private double xOffset = 0;
+    private double xOffset = 0; // This is necessary for custom window dragging
     private double yOffset = 0;
 
-    public static double progress;
+    // endregion
+
+
+    private static boolean state_past_button = false;
+    private static boolean state_next_button = true;
+    private static double progress;
 
 
     private static int first_time;
-
-    public static boolean state_past_button = false;
-    public static boolean state_next_button = true;
-
 
     private static String db_name;
     private static String db_soname;
@@ -213,7 +231,7 @@ public class ControllerSwitch {
         }else{
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/windows/ResultsWindow.fxml")));
             stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = new Scene(root, Color.TRANSPARENT);
             stage.setScene(scene);
             SwitchStatistic();
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -235,7 +253,6 @@ public class ControllerSwitch {
     }
 
     public void SwitchStatistic() throws SQLException, ClassNotFoundException {
-        System.out.println(System.currentTimeMillis());
         String answers = Integer.toString(ControllerQuestions.getTrue_answer());
         Text text_number_true_answer = (Text) scene.lookup("#text_number_true_answer");
         text_number_true_answer.setText(answers);
@@ -244,7 +261,7 @@ public class ControllerSwitch {
         int second_time = (int) System.currentTimeMillis();
         int time = (second_time - first_time)/60000;
         Text text_number_minutes = (Text) scene.lookup("#text_number_minutes");
-        text_number_minutes.setText(String.valueOf(time));
+        text_number_minutes.setText(String.valueOf(time) + " минут");
         db_time = time;
 
         Text text_results = (Text) scene.lookup("#text_results");

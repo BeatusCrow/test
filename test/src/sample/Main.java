@@ -9,14 +9,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
-/*
- This class is intended only for loading the start window.
- Nothing else is happening here.
+/**
+ The main class responsible for loading the authorization window.
  */
 public class Main extends Application {
     private double xOffset = 0;
@@ -51,7 +47,5 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
         launch(args);
-        final URL url = new URL("http://jsonplaceholder.typicode.com/posts?_limit=10");
-        final HttpURLConnection con = (HttpURLConnection) url.openConnection();
     }
 }
