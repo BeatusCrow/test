@@ -1,0 +1,1 @@
+java --module-path "%~dp0\javafx-sdk-17.0.9\lib" --add-modules javafx.controls,javafx.fxml -Dfile.encoding=windows-1251 -jar "%~dp0\out\artifacts\test_jar\test.jar"
