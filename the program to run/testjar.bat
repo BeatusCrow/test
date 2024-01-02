@@ -1,1 +1,1 @@
-java --module-path "%~dp0\javafx-sdk-17.0.9\lib" --add-modules javafx.controls,javafx.fxml -Dfile.encoding=UTF-8 -jar "%~dp0\lib\test.jar"
+java --module-path "%~dp0\javafx-sdk-17.0.9\lib" --add-modules javafx.controls,javafx.fxml -Dfile.encoding=UTF-8 -jar "%~dp0\other\test.jar"
