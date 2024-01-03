@@ -1,2 +1,2 @@
-# test
-This application is my first attempt to create anything using javafx. Everything in the "code" folder is the source code of the project. In the folder "the program to run " you can find jar files and a batch file for launching the application. If you just need to launch the application, then download the contents of this folder.
+# Testing application
+This project is a testing application created using JavaFX. Everything in the ***code*** folder is the source code of the project. Everything in the folder ***the program to run*** is jar files, jre, bat file, vbs file. You can launch the application via a bat or vbs file. The only difference between them is hiding cmd. Next to the README file is ***test.exe***. This file is an archive with JAR, jar files and a vbs file running jar. If you only need to run the application, then download this particular file.
